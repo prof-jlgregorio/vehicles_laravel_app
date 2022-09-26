@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FatecController;
+use App\Http\Controllers\VehicleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,6 @@ Route::get('/', function () {
 
 
 Route::get('/fatec', [FatecController::class, 'index'] );
+
+//..creating the routes to resource controller
+Route::resource('/vehicles', VehicleController::class );
