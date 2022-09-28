@@ -6,7 +6,7 @@
     
     @if ($vehicles)
         @foreach ($vehicles as $v)
-            <p>{{ $v->name }} - {{ $v->year }}</p>
+            <p>{{ $v->name }} - {{ $v->year }} - {{ $v->color }}</p>
         @endforeach    
     @else
         <h3>Não há veículos cadastrados!</h3>

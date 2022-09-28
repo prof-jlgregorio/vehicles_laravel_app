@@ -28,7 +28,8 @@ class VehicleController extends Controller
      */
     public function create()
     {
-        //
+        //..return the form to create a new vehicle
+        return view('vehicle.create');
     }
 
     /**
@@ -39,7 +40,13 @@ class VehicleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request);
+        $vehicle = new Vehicle();
+        $vehicle->name = $request->input('name');
+        $vehicle->color = $request->input('color');
+        $vehicle->year = $request->input('year');
+        $vehicle->save();
+        return redirect(route('vehicles.index'));
     }
 
     /**
