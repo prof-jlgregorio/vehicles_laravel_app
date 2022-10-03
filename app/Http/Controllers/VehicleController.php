@@ -57,7 +57,16 @@ class VehicleController extends Controller
      */
     public function show($id)
     {
-        //
+        //..retrieve the resource from database
+        $v = Vehicle::find($id);
+        //..if the return exists, then...
+        if($v){
+            //..return a the view, with the data;
+            return view('vehicle.show')->with('vehicle', $v);
+        } else {
+            //else return the page 404.
+            return abort(404);
+        }
     }
 
     /**
