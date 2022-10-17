@@ -3,7 +3,6 @@
 
 {{-- create a section to specific code --}}
 @section('content')
-    
     @if (!is_null($vehicles))
         <table border="1">
             <tr>
@@ -18,7 +17,6 @@
                 <td> <a href="{{ route('vehicles.edit', $v->id) }}">Editar</a> </td>
                 <td> Excluir </td>
             </tr>
-    
         @endforeach   
         </table> 
     @else
