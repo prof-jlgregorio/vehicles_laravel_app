@@ -77,7 +77,10 @@ class VehicleController extends Controller
      */
     public function edit($id)
     {
-        //
+        //..retrive the vehicle using $id
+        $v = Vehicle::find($id);
+        //..return the view to edit the vehicle
+        return view('vehicle.edit')->with('vehicle', $v);
     }
 
     /**
@@ -89,7 +92,16 @@ class VehicleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //find the vehicle to update
+        $v = Vehicle::find($id);
+        //..update the values
+        $v->name = $request->input('name');
+        $v->year = $request->input('year');
+        $v->color = $request->input('color');
+        //..persist
+        $v->save();
+        //..redirect to 'index' route
+        return redirect(route('vehicles.index'));
     }
 
     /**
