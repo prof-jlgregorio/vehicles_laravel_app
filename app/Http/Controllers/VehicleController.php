@@ -40,6 +40,9 @@ class VehicleController extends Controller
      */
     public function store(Request $request)
     {
+        //..do the validation
+        $request->validate($this->getRules());
+        
         //dd($request);
         $vehicle = new Vehicle();
         $vehicle->name = $request->input('name');
@@ -112,6 +115,22 @@ class VehicleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //..find the resource to delete
+        $v = Vehicle::find($id);
+        //..delete it!
+        $v->delete();
+        //..redirect to index
+        return redirect(route('vehicles.index'));
     }
+
+    //..get the validation rules
+    public function getRules(){
+        $rules = [
+            'name' => 'required|max:50',
+            'year' => 'required|numeric|digits:4',
+            'color' => 'required|max:30' 
+        ];
+        return $rules;
+    }
+
 }

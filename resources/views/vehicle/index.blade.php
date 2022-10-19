@@ -15,7 +15,14 @@
                 <td>{{ $v->color }}</td>
                 <td> <a href="{{ route('vehicles.show', $v->id) }}">Visualizar</a> </td>
                 <td> <a href="{{ route('vehicles.edit', $v->id) }}">Editar</a> </td>
-                <td> Excluir </td>
+                {{-- form to delete the resource --}}
+                <td> 
+                    <form action="{{ route('vehicles.destroy', $v->id) }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <input type="submit" value="Excluir">
+                    </form>
+                </td>
             </tr>
         @endforeach   
         </table> 
