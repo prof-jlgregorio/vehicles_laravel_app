@@ -98,10 +98,14 @@ class VehicleController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
+        $request->validate($this->getRules());
+        
         //find the vehicle to update
         $v = Vehicle::find($id);
         //..update the values
         $v->name = $request->input('name');
+        
         $v->year = $request->input('year');
         $v->color = $request->input('color');
         //..persist
