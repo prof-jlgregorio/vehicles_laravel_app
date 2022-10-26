@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class VehicleController extends Controller
 {
@@ -15,7 +16,8 @@ class VehicleController extends Controller
     public function index()
     {
         //..retrieve all vehicles from database
-        $vehicles = Vehicle::all();
+        //$vehicles = Vehicle::all();
+        $vehicles = DB::table('vehicles')->paginate(5);
 
         //..return the view with the retrieved data
         return view('vehicle.index')->with('vehicles', $vehicles);
@@ -105,7 +107,7 @@ class VehicleController extends Controller
         $v = Vehicle::find($id);
         //..update the values
         $v->name = $request->input('name');
-        
+
         $v->year = $request->input('year');
         $v->color = $request->input('color');
         //..persist
