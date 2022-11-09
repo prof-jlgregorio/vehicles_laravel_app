@@ -29,6 +29,15 @@
             {{ $message }}
         </div>
         @enderror
+        <select name="brand" id="brand">
+            @if($brands)
+            	@foreach ($brands as $brand)
+                    <option {{ $vehicle->brand_id == $brand->id ? 'selected' : ''  }}   
+                        value="{{ $brand->id }}">{{ $brand->name }}</option>
+                @endforeach
+            @endif
+        </select>
+
         <input type="submit" value="Salvar">
         <input type="reset" value="Limpar">
     </form>

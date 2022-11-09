@@ -30,6 +30,5 @@ class DatabaseSeeder extends Seeder
         DB::unprepared($brands);
         DB::unprepared($vehicles);
 
-
     }
 }

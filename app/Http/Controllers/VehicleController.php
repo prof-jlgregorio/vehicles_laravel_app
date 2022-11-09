@@ -17,7 +17,7 @@ class VehicleController extends Controller
     {
         //..retrieve all vehicles from database
         //$vehicles = Vehicle::all();
-        $vehicles = DB::table('vehicles')->paginate(5);
+        $vehicles = Vehicle::with('brand')->paginate(10);
 
         //..return the view with the retrieved data
         return view('vehicle.index')->with('vehicles', $vehicles);
@@ -30,8 +30,10 @@ class VehicleController extends Controller
      */
     public function create()
     {
+        $brands = BrandController::getBrands();
+
         //..return the form to create a new vehicle
-        return view('vehicle.create');
+        return view('vehicle.create')->with('brands', $brands);
     }
 
     /**
@@ -53,6 +55,7 @@ class VehicleController extends Controller
         $vehicle->name = $request->input('name');
         $vehicle->color = $request->input('color');
         $vehicle->year = $request->input('year');
+        $vehicle->brand_id = $request->input('brand');
         $vehicle->save();
         return redirect(route('vehicles.index'));
     }
@@ -87,8 +90,14 @@ class VehicleController extends Controller
     {
         //..retrive the vehicle using $id
         $v = Vehicle::find($id);
+
+        //..retrive the brands
+        $brands = BrandController::getBrands();
+
         //..return the view to edit the vehicle
-        return view('vehicle.edit')->with('vehicle', $v);
+        return view('vehicle.edit')
+            ->with('vehicle', $v)
+            ->with('brands', $brands);
     }
 
     /**
@@ -107,9 +116,9 @@ class VehicleController extends Controller
         $v = Vehicle::find($id);
         //..update the values
         $v->name = $request->input('name');
-
         $v->year = $request->input('year');
         $v->color = $request->input('color');
+        $v->brand_id = $request->input('brand');
         //..persist
         $v->save();
         //..redirect to 'index' route

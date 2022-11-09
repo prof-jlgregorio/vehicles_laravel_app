@@ -9,6 +9,7 @@
                 <th>Nome</th>
                 <th>Ano</th>
                 <th>Cor</th>
+                <th>Marca/Fabricante</th>
                 <th colspan="3">Ações</th>
             </tr>
             @foreach ($vehicles as $v)
@@ -16,6 +17,7 @@
                     <td>{{ $v->name }}</td>
                     <td>{{ $v->year }}</td>
                     <td>{{ $v->color }}</td>
+                    <td>{{ $v->brand->name }}</td>
                     <td> <a class="btn btn-info" href="{{ route('vehicles.show', $v->id) }}">Visualizar</a> </td>
                     <td> <a class="btn btn-primary" href="{{ route('vehicles.edit', $v->id) }}">Editar</a> </td>
                     {{-- form to delete the resource --}}

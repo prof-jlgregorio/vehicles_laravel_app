@@ -30,12 +30,25 @@
         </div>
         @enderror
         {{-- ------------------------------------------ --}}
+        <label for="brand">Marca/Fabricante</label>
+        <select name="brand" id="brand">
+            @if($brands)
+                @foreach ($brands as $brand)
+                    <option value="{{$brand->id}}">{{ $brand->name }}</option>
+                @endforeach
+            @endif
+        </select>
+        {{-- ------------------------------------------ --}}
         <input type="submit" value="Salvar">
         <input type="reset" value="Limpar">
     </form>
 
     {{-- @if(count($errors) > 0)
         {{ dd($errors) }}
+    @endif --}}
+
+    {{-- @if($brands)
+        {{ dd($brands) }}
     @endif --}}
 
 @endsection
